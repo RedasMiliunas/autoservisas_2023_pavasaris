@@ -8,12 +8,20 @@ class AutomobilioModelis(models.Model):
     def __str__(self):
         return f'{self.marke} {self.modelis}'
 
+    class Meta:
+        verbose_name = "Automobilio modelis"
+        verbose_name_plural = "Automobilio modeliai"
+
 class Paslauga(models.Model):
     pavadinimas = models.CharField(verbose_name='Pavadinimas', max_length=50)
     kaina = models.IntegerField(verbose_name='Kaina')
 
     def __str__(self):
         return self.pavadinimas
+
+    class Meta:
+        verbose_name = "Paslauga"
+        verbose_name_plural = "Paslaugos"
 
 class Automobilis(models.Model):
     valstybinis_nr = models.CharField(verbose_name='Valstybinis numeris', max_length=6)
@@ -24,6 +32,10 @@ class Automobilis(models.Model):
     def __str__(self):
         return f'{self.automobilio_modelis} ({self.valstybinis_nr})'
 
+    class Meta:
+        verbose_name = "Automobilis"
+        verbose_name_plural = "Automobiliai"
+
 class Uzsakymas(models.Model):
     data = models.DateTimeField(verbose_name='Data ir laikas', auto_now_add=True)
     automobilis = models.ForeignKey(to='Automobilis', verbose_name='Automobilis', on_delete=models.SET_NULL, null=True)
@@ -32,6 +44,10 @@ class Uzsakymas(models.Model):
     def __str__(self):
         return f'{self.data} ({self.automobilis})'
 
+    class Meta:
+        verbose_name = "Uzsakymas"
+        verbose_name_plural = "Uzsakymai"
+
 class UzsakymoEilute(models.Model):
     uzsakymas = models.ForeignKey(to='Uzsakymas', on_delete=models.CASCADE)
     paslauga = models.ForeignKey(to='Paslauga', verbose_name='Paslauga', on_delete=models.SET_NULL, null=True)
@@ -39,3 +55,7 @@ class UzsakymoEilute(models.Model):
 
     def __str__(self):
         return f'{self.uzsakymas.automobilis} {self.uzsakymas.data}: {self.paslauga} - {self.kiekis}'
+
+    class Meta:
+        verbose_name = "Uzsakymo eilute"
+        verbose_name_plural = "Uzsakymo eilutes"
