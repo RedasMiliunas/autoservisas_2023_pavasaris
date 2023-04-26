@@ -6,7 +6,9 @@ from .models import (Automobilis,
                      UzsakymoEilute)
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['']
+    list_display = ['automobilis', 'data']
+
+
 
 
 # Register your models here.
