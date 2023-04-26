@@ -15,6 +15,8 @@ class OrderAdmin(admin.ModelAdmin):
 
 class VehicleAdmin(admin.ModelAdmin):
     list_display = ['automobilio_modelis', 'kliento_vardas', 'vin', 'valstybinis_nr']
+    list_filter = ['kliento_vardas', 'automobilio_modelis__marke', 'automobilio_modelis__modelis']
+    search_fields = ['vin', 'valstybinis_nr', 'automobilio_modelis__marke', 'automobilio_modelis__modelis']
 
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ['pavadinimas', 'kaina']
