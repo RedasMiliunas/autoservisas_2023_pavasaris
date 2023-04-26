@@ -5,9 +5,13 @@ from .models import (Automobilis,
                      Uzsakymas,
                      UzsakymoEilute)
 
+class OrderLineInline(admin.TabularInline):
+    model = UzsakymoEilute
+    extra = 0
+
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['automobilis', 'data']
-
+    inlines = [OrderLineInline]
 
 
 
