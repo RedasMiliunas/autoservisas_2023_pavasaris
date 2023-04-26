@@ -13,11 +13,15 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ['automobilis', 'data']
     inlines = [OrderLineInline]
 
+class VehicleAdmin(admin.ModelAdmin):
+    list_display = ['automobilio_modelis', 'kliento_vardas', 'vin', 'valstybinis_nr']
 
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ['pavadinimas', 'kaina']
 
 # Register your models here.
-admin.site.register(Automobilis)
+admin.site.register(Automobilis, VehicleAdmin)
 admin.site.register(AutomobilioModelis)
-admin.site.register(Paslauga)
+admin.site.register(Paslauga, ServiceAdmin)
 admin.site.register(Uzsakymas, OrderAdmin)
 admin.site.register(UzsakymoEilute)
