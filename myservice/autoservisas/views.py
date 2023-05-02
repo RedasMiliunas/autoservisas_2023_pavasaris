@@ -42,11 +42,12 @@ def vehicles(request):
 #     }
 #     return render(request, 'vehicles.html', context=context)
 
-# def vehicle(request):
-#     context = {
-#         'vehicle': get_object_or_404(Automobilis, pk=vehicle_id)
-#     }
-#     return render(request, 'vehicle.html', context=context)
+#2uzduotis:
+def vehicle(request, vehicle_id):
+    context = {
+        'vehicle': get_object_or_404(Automobilis, pk=vehicle_id)
+    }
+    return render(request, 'vehicle.html', context=context)
 
 class OrderListView(generic.ListView):
     model = Uzsakymas
