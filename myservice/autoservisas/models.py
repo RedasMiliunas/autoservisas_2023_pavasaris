@@ -40,6 +40,14 @@ class Uzsakymas(models.Model):
     data = models.DateTimeField(verbose_name='Data ir laikas', auto_now_add=True)
     automobilis = models.ForeignKey(to='Automobilis', verbose_name='Automobilis', on_delete=models.SET_NULL, null=True)
 
+    LOAN_STATUS = (
+        ('p', 'Patvirtinta'),
+        ('v', 'Vykdoma'),
+        ('a', 'Atsaukta'),
+        ('t', 'Tvirtinama'),
+        ('i', 'Ivykdyta'),
+    )
+    status = models.CharField(verbose_name="Busena", max_length=1, choices=LOAN_STATUS, blank=True, default='t')
 
     def __str__(self):
         return f'{self.data} ({self.automobilis})'
