@@ -30,7 +30,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'index' %}">Pradžia</a>
                     <a class="nav-link" href="{% url 'vehicles' %}">Automobiliai</a>
-                    <a class="nav-link" href="">Užsakymai</a>
+                    <a class="nav-link" href="{% url 'orders' %}">Užsakymai</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item"><a class="nav-link" href="">

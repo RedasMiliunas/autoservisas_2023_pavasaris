@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+
+{% block title %}Uzsakymas{% endblock %}
+
+{% block content %}
+
+<h1>Uzsakymas:</h1>
+<br>
+<p><strong>Data: </strong>{{ order.data }}</p>
+<p><strong>Automobilis: </strong>{{ order.automobilis }}</p>
+<p><strong>Busena: </strong>{{ order.get_status_display }}</p>
+
+<hr>
+{% %}
+{% %}
+{% endblock %}

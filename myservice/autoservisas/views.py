@@ -49,6 +49,7 @@ def vehicle(request, vehicle_id):
     }
     return render(request, 'vehicle.html', context=context)
 
+#AAAA
 class OrderListView(generic.ListView):
     model = Uzsakymas
     template_name = 'orders.html'
