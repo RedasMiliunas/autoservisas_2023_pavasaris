@@ -25,6 +25,17 @@ def index(request):
     # return render(request, 'autoservice.html', context=context)
 
 # Django V-tos dalies:
+
+def vehicles(request):
+    context = {
+        'vehicles': Automobilis.objects.all()
+    }
+    return render(request, 'vehicles.html', context=context)
+#OR:
+# def vehicles(request):
+    #return render(request, 'vehicles.html', context={'vehicles': Automobilis.objects.all()})
+
+
 # def vehicles(request):
 #     context = {
 #         'vehicles': Automobilis.objects.all()
