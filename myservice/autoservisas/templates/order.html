@@ -24,7 +24,12 @@
         <td>{{ line.kiekis }}</td>
         <td>{{ line.suma }}</td>
     </tr>
-
 {% endfor %}
+    <tr>
+        <td></td>
+        <td></td>
+        <td><strong>TOTAL:</strong></td>
+        <td><strong>{{ order.total }}</strong></td>
+    </tr>
 </table>
 {% endblock %}

@@ -40,6 +40,12 @@ class Uzsakymas(models.Model):
     data = models.DateTimeField(verbose_name='Data ir laikas', auto_now_add=True)
     automobilis = models.ForeignKey(to='Automobilis', verbose_name='Automobilis', on_delete=models.SET_NULL, null=True)
 
+    def total(self):
+        total_suma = 0
+        for line in self.lines.all():
+            total_suma += line.suma()
+        return total_suma
+
     LOAN_STATUS = (
         ('p', 'Patvirtinta'),
         ('v', 'Vykdoma'),
