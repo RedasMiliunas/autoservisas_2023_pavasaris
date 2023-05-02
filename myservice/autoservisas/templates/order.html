@@ -9,8 +9,22 @@
 <p><strong>Data: </strong>{{ order.data }}</p>
 <p><strong>Automobilis: </strong>{{ order.automobilis }}</p>
 <p><strong>Busena: </strong>{{ order.get_status_display }}</p>
-
 <hr>
-{% %}
-{% %}
+<table class="table table-striped">
+    <tr>
+        <th>Paslauga</th>
+        <th>Kaina</th>
+        <th>Kiekis</th>
+        <th>Suma</th>
+    </tr>
+{% for line in order.lines.all %}
+    <tr>
+        <td>{{ line.paslauga }}</td>
+        <td>{{ line.paslauga.kaina }}</td>
+        <td>{{ line.kiekis }}</td>
+        <td></td>
+    </tr>
+
+{% endfor %}
+</table>
 {% endblock %}

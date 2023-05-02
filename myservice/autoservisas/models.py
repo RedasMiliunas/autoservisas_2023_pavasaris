@@ -57,7 +57,7 @@ class Uzsakymas(models.Model):
         verbose_name_plural = "Uzsakymai"
 
 class UzsakymoEilute(models.Model):
-    uzsakymas = models.ForeignKey(to='Uzsakymas', on_delete=models.CASCADE)
+    uzsakymas = models.ForeignKey(to='Uzsakymas', on_delete=models.CASCADE, related_name='lines')
     paslauga = models.ForeignKey(to='Paslauga', verbose_name='Paslauga', on_delete=models.SET_NULL, null=True)
     kiekis = models.IntegerField(verbose_name='Kiekis')
 
