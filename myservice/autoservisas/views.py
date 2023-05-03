@@ -6,6 +6,20 @@ from django.views import generic
 from django.core.paginator import Paginator
 
 # Create your views here.
+
+from django.db.models import Q
+
+def search(request):
+    """
+    paprasta paieška. query ima informaciją iš paieškos laukelio,
+    search_results prafiltruoja pagal įvestą tekstą knygų pavadinimus ir aprašymus.
+    Icontains nuo contains skiriasi tuo, kad icontains ignoruoja ar raidės
+    didžiosios/mažosios.
+    """
+    query = request.GET.get('query')
+    search_results = Automobilis.objects.filter(Q(valstybinis_nr__icontains=query) | Q(vin__icontains=query) | Q(kliento_vardas__icontains=query) | Q(automobilio_modelis__marke__icontains=query) | Q(automobilio_modelis__modelis__icontains=query))
+    return render(request, 'search.html', {'vehicles': search_results, 'query': query})
+
 def index(request):
     context = {
         'service_count': Paslauga.objects.count(),
