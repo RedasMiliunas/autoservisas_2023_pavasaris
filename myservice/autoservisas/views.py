@@ -21,10 +21,15 @@ def search(request):
     return render(request, 'search.html', {'vehicles': search_results, 'query': query})
 
 def index(request):
+    #sesijos (fiksuota info be jo prisijungimu: fiksuojam skaiciuka kiek kartu jis prisijungia:
+    num_visits = request.session.get('num_visits', 1)
+    request.session['num_visits'] = num_visits + 1
+
     context = {
         'service_count': Paslauga.objects.count(),
         'orders_done': Uzsakymas.objects.filter(status__exact='i').count(),
         'vehicles': Automobilis.objects.count(),
+        'num_visits': num_visits,
 
     }
     return render(request, 'index.html', context=context)
