@@ -28,7 +28,7 @@ class Automobilis(models.Model):
     vin = models.CharField(verbose_name='VIN kodas', max_length=17)
     kliento_vardas = models.CharField(verbose_name='Savininkas', max_length=50)
     automobilio_modelis = models.ForeignKey(to='AutomobilioModelis', verbose_name='Automobilio modelis', on_delete=models.SET_NULL, null=True)
-    photo = models.ImageField(verbose_name="Nuotrauka", upload_to='vehicles',  null=True, blank=True)
+    photo = models.ImageField(verbose_name="Nuotrauka", upload_to='vehicles', null=True, blank=True) #arba tik blank=True
 
     def __str__(self):
         return f'{self.automobilio_modelis} ({self.valstybinis_nr})'
