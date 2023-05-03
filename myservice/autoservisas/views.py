@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import *
 from django.shortcuts import get_object_or_404
 from django.views import generic
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
@@ -27,9 +28,15 @@ def index(request):
 # Django V-tos dalies:
 
 def vehicles(request):
+    paginator = Paginator(Automobilis.objects.all(), 2)
+    page_number = request.GET.get('page')
+    paged_vehicles = paginator.get_page(page_number)
     context = {
-        'vehicles': Automobilis.objects.all()
+        'vehicles': paged_vehicles
     }
+    # context = {
+    #     'vehicles': Automobilis.objects.all()
+    # }
     return render(request, 'vehicles.html', context=context)
 #OR:
 # def vehicles(request):
