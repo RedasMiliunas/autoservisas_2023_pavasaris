@@ -10,7 +10,8 @@ class OrderLineInline(admin.TabularInline):
     extra = 0
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['automobilis', 'data']
+    list_display = ['automobilis', 'data', 'grazinimo_data']
+    list_editable = ['grazinimo_data']
     inlines = [OrderLineInline]
 
 class VehicleAdmin(admin.ModelAdmin):

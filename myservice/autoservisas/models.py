@@ -63,11 +63,11 @@ class Uzsakymas(models.Model):
     )
     status = models.CharField(verbose_name="Busena", max_length=1, choices=LOAN_STATUS, blank=True, default='t')
 
-    def is_done(self):
+    def is_overdue(self):
         return self.grazinimo_data and date.today() > self.grazinimo_data
 
     def __str__(self):
-        return f'{self.data} ({self.automobilis})'
+        return f'Priimta: [{self.data}], {self.automobilis}, grazinimas: [{self.grazinimo_data}]'
 
     class Meta:
         verbose_name = "Uzsakymas"
