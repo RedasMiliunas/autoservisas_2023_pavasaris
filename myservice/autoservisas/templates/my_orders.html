@@ -5,9 +5,9 @@
 {% block content %}
 
 <h1>Jusu uzsakymai:</h1>
-
+<hr>
 {% for order in my_orders %}
-<p>{{ order }}</p>
+<p class="{% if order.is_overdue %}text-danger{% endif %}">{{ order }}</p>
 <hr>
 {% endfor %}
 
