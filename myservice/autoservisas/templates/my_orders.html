@@ -7,7 +7,7 @@
 <h1>Jusu uzsakymai:</h1>
 <hr>
 {% for orderis in my_orders %}
-<p><a href="{% url 'order' orderis.id %}">{{ orderis.automobilis }}</a> - {{ orderis.klientas }} [<span class="{% if orderis.is_overdue %}text-danger{% endif %}">{{ orderis.grazinimo_data}}</span>]</p>
+<p><a href="{% url 'order' orderis.id %}">{{ orderis.automobilis }}</a> - Statusas ({{ orderis.get_status_display }}), BUS ATLIKTA [<span class="{% if orderis.is_overdue %}text-danger{% endif %}">{{ orderis.grazinimo_data}}</span>]</p>
 <hr>
 
 {% endfor %}
