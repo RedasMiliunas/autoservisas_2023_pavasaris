@@ -6,9 +6,10 @@
 
 <h1>Jusu uzsakymai:</h1>
 <hr>
-{% for order in my_orders %}
-<p class="{% if order.is_overdue %}text-danger{% endif %}">{{ order }}</p>
+{% for orderis in my_orders %}
+<p><a href="{% url 'order' orderis.id %}">{{ orderis.automobilis }}</a> - {{ orderis.klientas }} [<span class="{% if orderis.is_overdue %}text-danger{% endif %}">{{ orderis.grazinimo_data}}</span>]</p>
 <hr>
+
 {% endfor %}
 
 {% endblock %}
