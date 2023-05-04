@@ -17,6 +17,7 @@
 <p><strong>Savininkas: </strong>{{ vehicle.kliento_vardas }}</p>
 <p><strong>VIN kodas: </strong>{{ vehicle.vin }}</p>
 <p><strong>Valstyb. Nr.: </strong>{{ vehicle.valstybinis_nr }}</p>
+<p><strong>Aprasymas: </strong>{{ vehicle.description | safe }}</p>
 <hr>
 
 {% endblock %}
