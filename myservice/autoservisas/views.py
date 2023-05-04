@@ -86,3 +86,15 @@ class OrderDetailView(generic.DetailView):
     model = Uzsakymas
     template_name = 'order.html'
     context_object_name = 'order'
+
+
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class MyOrdersListview(LoginRequiredMixin, generic.ListView):
+    model = Uzsakymas
+    context_object_name = 'my_orders'
+    template_name = 'my_orders.html'
+
+    def get_queryset(self):
+        return Uzsakymas.objects.filter(klientas=self.request.user)

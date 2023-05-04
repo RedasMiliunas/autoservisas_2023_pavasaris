@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+{% block title %}Mano uzsakymai{% endblock %}
+
+{% block content %}
+
+<h1>Jusu uzsakymai:</h1>
+
+{% for order in my_orders %}
+<p>{{ order }}</p>
+<hr>
+{% endfor %}
+
+{% endblock %}
