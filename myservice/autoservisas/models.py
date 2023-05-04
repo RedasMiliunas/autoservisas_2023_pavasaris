@@ -37,9 +37,16 @@ class Automobilis(models.Model):
         verbose_name = "Automobilis"
         verbose_name_plural = "Automobiliai"
 
+
+from django.contrib.auth.models import User
+from datetime import date
+
 class Uzsakymas(models.Model):
     data = models.DateTimeField(verbose_name='Data ir laikas', auto_now_add=True)
     automobilis = models.ForeignKey(to='Automobilis', verbose_name='Automobilis', on_delete=models.SET_NULL, null=True)
+    klientas = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
+    grazinimo_data = models.DateField(verbose_name='Bus atlikta', null=True, blank=True)
+
 
     def total(self):
         total_suma = 0
@@ -55,6 +62,9 @@ class Uzsakymas(models.Model):
         ('i', 'Ivykdyta'),
     )
     status = models.CharField(verbose_name="Busena", max_length=1, choices=LOAN_STATUS, blank=True, default='t')
+
+    def is_done(self):
+        return self.grazinimo_data and date.today() > self.grazinimo_data
 
     def __str__(self):
         return f'{self.data} ({self.automobilis})'
