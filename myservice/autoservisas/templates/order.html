@@ -32,4 +32,16 @@
         <td><strong>{{ order.total }}</strong></td>
     </tr>
 </table>
+<br>
+<h3>Atsiliepimai:</h3>
+{% if order.reviews.all %}
+{% for review in order.reviews.all %}
+<hr>
+<strong>{{ review.komentatorius }}</strong>, <em>{{ review.sukurimo_data }}</em>
+<p>{{ review.komentaras }}</p>
+{% endfor %}
+{% else %}
+<p>Siame uzsakyme nera jokiu atsiliepimu.</p>
+{% endif %}
+
 {% endblock %}
