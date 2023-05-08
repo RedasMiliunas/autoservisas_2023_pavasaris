@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from .models import *
 from django.shortcuts import get_object_or_404
@@ -82,10 +82,16 @@ class OrderListView(generic.ListView):
     context_object_name = 'orders'
     paginate_by = 2
 
-class OrderDetailView(generic.DetailView):
+from django.views.generic.edit import FormMixin
+from .forms import OrderReviewForm
+class OrderDetailView(FormMixin, generic.DetailView):
     model = Uzsakymas
     template_name = 'order.html'
     context_object_name = 'order'
+    form_class = OrderReviewForm
+
+    # def get_success_url(self):
+    #     return super().get_success_url()
 
 
 
@@ -98,6 +104,7 @@ class MyOrdersListview(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Uzsakymas.objects.filter(klientas=self.request.user)
+
 
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import User
