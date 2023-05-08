@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from django.shortcuts import get_object_or_404
@@ -98,3 +98,33 @@ class MyOrdersListview(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Uzsakymas.objects.filter(klientas=self.request.user)
+
+from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.forms import User
+from django.contrib import messages
+
+@csrf_protect
+def register(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
+        if password == password2:
+            if User.objects.filter(username=username).exists():
+                messages.error(request, f'Vartotojo vardas {username} uzimtas!')
+                return redirect('register')
+            else:
+                if User.objects.filter(email=email).exists():
+                    messages.error(request, f'Vartotojas su el. pastu {email} jau uzregistruotas')
+                    return redirect('register')
+                else:
+                    User.objects.create_user(username=username, email=email, password=password)
+                    messages.info(request, f'Vartotojas {username} sekmingai uzregistruotas')
+                    return redirect('login')
+        else:
+            messages.error(request, f'Slaptazodziai nesutampa!')
+            return redirect('register')
+
+    else:
+        return render(request, 'registration/register.html')
