@@ -90,9 +90,16 @@ class OrderDetailView(FormMixin, generic.DetailView):
     context_object_name = 'order'
     form_class = OrderReviewForm
 
-    # def get_success_url(self):
-    #     return super().get_success_url()
+    def get_success_url(self):
+        return reverse('order', kwargs={'pk': self.object.id})
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
 
 from django.contrib.auth.mixins import LoginRequiredMixin
