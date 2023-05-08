@@ -89,3 +89,15 @@ class UzsakymoEilute(models.Model):
     class Meta:
         verbose_name = "Uzsakymo eilute"
         verbose_name_plural = "Uzsakymo eilutes"
+
+
+class OrderReview(models.Model):
+    uzsakymas = models.ForeignKey(to='Uzsakymas', verbose_name='Uzsakymas', on_delete=models.SET_NULL, null=True, blank=True, related_name='reviews')
+    komentatorius = models.ForeignKey(to=User, on_delete=models.SET_NULL, null=True, blank=True)
+    sukurimo_data = models.DateTimeField(verbose_name='Data', auto_now_add=True)
+    komentaras = models.TextField(verbose_name='Atsiliepimas', max_length=3000)
+
+    class Meta:
+        verbose_name = 'Atsiliepimas'
+        verbose_name_plural = 'Atsiliepimai'
+        ordering = ['-sukurimo_data']

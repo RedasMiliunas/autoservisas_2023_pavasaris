@@ -3,7 +3,8 @@ from .models import (Automobilis,
                      AutomobilioModelis,
                      Paslauga,
                      Uzsakymas,
-                     UzsakymoEilute)
+                     UzsakymoEilute,
+                     OrderReview)
 
 class OrderLineInline(admin.TabularInline):
     model = UzsakymoEilute
@@ -22,9 +23,14 @@ class VehicleAdmin(admin.ModelAdmin):
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ['pavadinimas', 'kaina']
 
+
+class OrderReviewAdmin(admin.ModelAdmin):
+    list_display = ['uzsakymas', 'komentatorius', 'sukurimo_data', 'komentaras']
+
 # Register your models here.
 admin.site.register(Automobilis, VehicleAdmin)
 admin.site.register(AutomobilioModelis)
 admin.site.register(Paslauga, ServiceAdmin)
 admin.site.register(Uzsakymas, OrderAdmin)
 admin.site.register(UzsakymoEilute)
+admin.site.register(OrderReview, OrderReviewAdmin)
