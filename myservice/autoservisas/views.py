@@ -101,6 +101,12 @@ class OrderDetailView(FormMixin, generic.DetailView):
         else:
             return self.form_invalid(form)
 
+    def form_valid(self, form):
+        form.instance.uzsakymas = self.object
+        form.instance.komentatorius = self.request.user
+        form.save()
+        return super().form_valid(form)
+
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
