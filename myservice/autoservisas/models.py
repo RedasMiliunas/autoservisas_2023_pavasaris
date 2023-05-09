@@ -101,3 +101,15 @@ class OrderReview(models.Model):
         verbose_name = 'Atsiliepimas'
         verbose_name_plural = 'Atsiliepimai'
         ordering = ['-sukurimo_data']
+
+
+class Profilis(models.Model):
+    vartotojas = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    nuotrauka = models.ImageField(verbose_name='Nuotrauka', upload_to='profile_pics', default='profile_pics/default.png')
+
+    def __str__(self):
+        return f'{self.vartotojas.username} profilis'
+
+    class Meta:
+        verbose_name = 'Profilis'
+        verbose_name_plural = 'Profiliai'

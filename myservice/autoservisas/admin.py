@@ -4,7 +4,8 @@ from .models import (Automobilis,
                      Paslauga,
                      Uzsakymas,
                      UzsakymoEilute,
-                     OrderReview)
+                     OrderReview,
+                     Profilis)
 
 class OrderLineInline(admin.TabularInline):
     model = UzsakymoEilute
@@ -34,3 +35,4 @@ admin.site.register(Paslauga, ServiceAdmin)
 admin.site.register(Uzsakymas, OrderAdmin)
 admin.site.register(UzsakymoEilute)
 admin.site.register(OrderReview, OrderReviewAdmin)
+admin.site.register(Profilis)
