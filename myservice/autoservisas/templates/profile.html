@@ -2,15 +2,15 @@
 {% block title %}Profilis{% endblock %}
 
 {% block content %}
-    <div class="content-section">
-      <div class="media">
+<div class="content-section">
+    <div class="media">
         <img class="rounded-circle account-img" src="{{ user.profilis.nuotrauka.url }}">
         <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
+            <h2 class="account-heading">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
             <small class="text-muted"><strong>Sukurimo data: </strong>{{ user.date_joined }}</small>
         </div>
-      </div>
-      <!-- FORM HERE -->
     </div>
+    <!-- FORM HERE -->
+</div>
 {% endblock %}
