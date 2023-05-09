@@ -103,6 +103,7 @@ class OrderReview(models.Model):
         ordering = ['-sukurimo_data']
 
 
+from PIL import Image
 class Profilis(models.Model):
     vartotojas = models.OneToOneField(to=User, on_delete=models.CASCADE)
     nuotrauka = models.ImageField(verbose_name='Nuotrauka', upload_to='profile_pics', default='profile_pics/default.png')
@@ -113,3 +114,12 @@ class Profilis(models.Model):
     class Meta:
         verbose_name = 'Profilis'
         verbose_name_plural = 'Profiliai'
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        img = Image.open(self.nuotrauka.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.nuotrauka.path)
+
